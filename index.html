@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Heriyanti — Calon Istriku Tercantik</title>
-  <meta name="description" content="Sebuah halaman cinta untuk Heriyanti, calon istriku tercantik." />
-  <meta property="og:title" content="Heriyanti — Calon Istriku Tercantik" />
-  <meta property="og:description" content="Sebuah halaman cinta untuk Heriyanti, calon istriku tercantik." />
+  <title>Heriyanti</title>
+  <meta name="description" content="untuk Heriyanti" />
+  <meta property="og:title" content="Heriyanti" />
+  <meta property="og:description" content="untuk Heriyanti" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://picsum.photos/1200/630?blur=3" />
   <meta name="theme-color" content="#ff6fa3" />
@@ -257,9 +257,9 @@ img{ max-width:100%; height:auto; }
     <!-- ===== hero ===== -->
     <section class="hero">
       <div class="intro card reveal">
-        <span class="eyebrow">Untuk <strong>Heriyanti</strong> — calon istriku tercantik</span>
+        <span class="eyebrow">Untuk <strong>Heriyanti</strong></span>
         <h1>Aku cinta kamu, hari ini, besok, dan selamanya.</h1>
-        <p class="subtitle" id="typewriter" aria-live="polite">#CalonIstriTercantik</p>
+        <p class="subtitle" id="typewriter" aria-live="polite"></p>
 
         <div class="actions">
           <button class="btn" id="btnPlay">Putar Musik</button>
@@ -284,9 +284,9 @@ img{ max-width:100%; height:auto; }
           pengingat kecil betapa kamu istimewa.
         </p>
         <ul>
-          <li>Kepribadian: Lembut, cerdas, dan lucu 🤍</li>
-          <li>Hobi: Tidur &#128514;</li>
-          <li>Makanan favorit: Coto Makassar &#128513;</li>
+          <li>Kepribadian : Lembut, cerdas, dan lucu 🤍</li>
+          <li>Hobi : Tidur &#128514;</li>
+          <li>Makanan favorit : Coto Makassar &#128513;</li>
         </ul>
       </div>
       <div class="panel reveal">
@@ -348,15 +348,91 @@ img{ max-width:100%; height:auto; }
       <div class="panel reveal">
         <h2 class="title">Buku Tamu & Konfirmasi Kehadiran</h2>
 
-        <!-- --- Buku Tamu (existing) --- -->
+        <!-- --- Buku Tamu --- -->
         <form id="guestForm" autocomplete="off" aria-label="Form buku tamu">
-          <input type="text" id="nama" placeholder="Namamu" required>
-          <textarea id="pesan" rows="3" placeholder="Tulis pesan manis untuk Heriyanti…" required></textarea>
+          <label for="nama">Nama:</label>
+          <input type="text" id="nama" name="nama" placeholder="Namamu" required>
+          
+          <label for="pesan">Pesan:</label>
+          <textarea id="pesan" name="pesan" rows="3" placeholder="Tulis pesan manis untuk Heriyanti…" required></textarea>
+          
           <div class="actions-row">
             <button class="btn" type="submit">Kirim</button>
-            <button class="btn secondary" type="button" id="btnClearMessages">Bersihkan Pesan (lokal)</button>
+            <button class="btn secondary" type="button" id="btnClearMessages">Bersihkan Pesan</button>
           </div>
         </form>
+
+        <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+  import { 
+    getFirestore, collection, addDoc, deleteDoc, doc,
+    onSnapshot, query, orderBy, getDocs 
+  } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
+
+  // TODO: Ganti dengan config Firebase kamu
+  const firebaseConfig = {
+    apiKey: "AIzaSyCu3adcn5d7110BTUcR-N9CvfiFGngV42g",
+    authDomain: "heriyantialdo.firebaseapp.com",
+    projectId: "heriyantialdo",
+    storageBucket: "heriyantialdo.firebasestorage.app",
+    messagingSenderId: "470452018084",
+    appId: "1:470452018084:web:84d87433a308015afe3f31"
+  };
+
+  // Init Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  const form = document.getElementById("guestForm");
+  const namaInput = document.getElementById("nama");
+  const pesanInput = document.getElementById("pesan");
+  const messagesContainer = document.getElementById("guestMessages");
+  const clearBtn = document.getElementById("btnClearMessages");
+
+  // Simpan pesan baru
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const nama = namaInput.value.trim();
+    const pesan = pesanInput.value.trim();
+
+    if (nama && pesan) {
+      await addDoc(collection(db, "guestMessages"), {
+        nama,
+        pesan,
+        timestamp: new Date()
+      });
+      form.reset();
+    }
+  });
+
+  // Hapus semua pesan
+  clearBtn.addEventListener("click", async () => {
+    if (confirm("Yakin ingin menghapus semua pesan?")) {
+      const snapshot = await getDocs(collection(db, "guestMessages"));
+      snapshot.forEach(async (docSnap) => {
+        await deleteDoc(doc(db, "guestMessages", docSnap.id));
+      });
+    }
+  });
+
+  // 🔥 Real-time listener
+  const q = query(collection(db, "guestMessages"), orderBy("timestamp", "asc"));
+  onSnapshot(q, (snapshot) => {
+    messagesContainer.innerHTML = "";
+    if (snapshot.empty) {
+      messagesContainer.innerHTML = "<p>Belum ada pesan.</p>";
+      return;
+    }
+    snapshot.forEach((docSnap) => {
+      const msg = docSnap.data();
+      const div = document.createElement("div");
+      div.className = "message";
+      div.innerHTML = `<strong>${msg.nama}</strong>: ${msg.pesan}`;
+      messagesContainer.appendChild(div);
+    });
+  });
+</script>
+
         <div class="messages" id="messages" aria-live="polite"></div>
 
         <hr style="margin:18px 0; border-color: rgba(255,255,255,.04)">
@@ -421,7 +497,7 @@ img{ max-width:100%; height:auto; }
             <h4 style="margin:6px 0">Daftar RSVP (lokal)</h4>
             <div id="rsvpList" style="max-height:240px; overflow:auto; padding-right:6px"></div>
           </div>
-        </div>
+        </br>
 
         <a class="btn secondary" id="btnAddCalendar">Tambah ke Kalender</a>
       </div>
@@ -469,7 +545,7 @@ img{ max-width:100%; height:auto; }
        Typewriter subtitle
        ============================ */
     const phrases = [
-      "Calon istriku tercantik: " + pageFor + " ✨",
+      "Untuk : " + pageFor + " ✨",
       "Aku memilihmu, setiap hari. 💍",
       "Menuju halal, bismillah. 🤲"
     ];
