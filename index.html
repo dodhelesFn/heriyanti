@@ -71,6 +71,43 @@
     }
     .nav a:hover{ background:var(--glass) }
 
+    .hamburger {
+      font-size: 24px;
+      background: none;
+      border: none;
+      color: var(--text);
+      cursor: pointer;
+      display: none; /* default sembunyi di desktop */
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 10px;
+    }
+
+    @media (max-width:768px) {
+      .hamburger {
+        display: block; /* tampil di hp */
+      }
+      .nav-links {
+        position: absolute;
+        top: 60px; right: 20px;
+        background: var(--card);
+        border-radius: 12px;
+        flex-direction: column;
+        padding: 10px;
+        display: none; /* disembunyikan default */
+        box-shadow: var(--shadow);
+      }
+      .nav-links.show {
+        display: flex; /* tampil saat toggle */
+      }
+      .nav-links a {
+        padding: 10px;
+        text-align: right;
+      }
+    }
+
     .container{max-width:1080px; margin:0 auto; padding:0 20px}
 
     .hero{
@@ -203,11 +240,16 @@ img{ max-width:100%; height:auto; }
     <nav class="nav">
       <div class="brand">❤️ Heriyanti</div>
       <div class="spacer"></div>
-      <a href="#tentang" aria-label="Tentang">Tentang</a>
-      <a href="#kisah" aria-label="Kisah">Kisah</a>
-      <a href="#galeri" aria-label="Galeri">Galeri</a>
-      <a href="#hitung-mundur" aria-label="Hitung Mundur">Countdown</a>
-      <a href="#buku-tamu" aria-label="Buku Tamu">Buku Tamu</a>
+      <!-- Tombol hamburger -->
+      <button class="hamburger" aria-label="Menu">&#9776;</button>
+      <!-- Link navigasi -->
+      <div class="nav-links">
+        <a href="#tentang" aria-label="Tentang">Tentang</a>
+        <a href="#kisah" aria-label="Kisah">Kisah</a>
+        <a href="#galeri" aria-label="Galeri">Galeri</a>
+        <a href="#hitung-mundur" aria-label="Hitung Mundur">Countdown</a>
+        <a href="#buku-tamu" aria-label="Buku Tamu">Buku Tamu</a>
+      </div>
     </nav>
   </header>
 
@@ -279,7 +321,7 @@ img{ max-width:100%; height:auto; }
     <!-- ===== galeri ===== -->
     <section id="galeri" class="panel reveal">
       <h2 class="title">Galeri untuk Heriyanti</h2>
-      <p class="muted">Ganti gambar-gambar berikut dengan foto kalian ya!</p>
+      <!--p class="muted">Ganti gambar-gambar berikut dengan foto kalian ya!</p-->
       <div class="gallery">
         <img src="https://i.ibb.co.com/PvtCr5qH/1.jpg=80&w=900&auto=format&fit=crop" alt="Kenangan 1">
         <img src="https://i.ibb.co.com/PGfCCYKW/2.jpg=80&w=900&auto=format&fit=crop" alt="Kenangan 2">
@@ -391,6 +433,18 @@ img{ max-width:100%; height:auto; }
   </footer>
 
   <script>
+    /* === Hamburger toggle === */
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+    });
+    // Tutup otomatis setelah klik link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('show');
+      });
+    });
     /* ============================
        CUSTOMIZABLE SETTINGS
        ============================ */
