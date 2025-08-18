@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Untuk Heriyanti ❤️</title>
+  <meta name="description" content="Ungkapan cinta sederhana untuk Heriyanti." />
+  <!-- Google Fonts (opsional; ada fallback font) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg1:#0f0c29;
+      --bg2:#302b63;
+      --bg3:#24243e;
+      --accent:#ff4d79;
+      --accent-2:#ff9bb3;
+      --text:#f7f7fb;
+      --muted:#cfd2ff;
+      --card:rgba(255,255,255,.08);
+      --card-border:rgba(255,255,255,.18);
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      color:var(--text);
+      font:16px/1.6 "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 600px at 20% -10%,#4a3aff22, transparent),
+                  linear-gradient(135deg,var(--bg1),var(--bg2) 50%,var(--bg3));
+      overflow-x:hidden;
+    }
+    /* animasi gradient halus */
+    @keyframes gradientShift{
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+    }
+    .wrap{
+      min-height:100%;
+      display:grid;
+      place-items:center;
+      padding:32px 16px 80px;
+      position:relative;
+      isolation:isolate;
+    }
+    /* Partikel hati di latar */
+    .hearts{
+      position:fixed;
+      inset:0;
+      overflow:hidden;
+      z-index:-1;
+      pointer-events:none;
+    }
+    .heart{
+      position:absolute;
+      width:14px;height:14px;
+      background:var(--accent);
+      transform:rotate(45deg);
+      opacity:.6;
+      filter:drop-shadow(0 8px 12px rgba(255,77,121,.35));
+      animation: floatUp linear forwards;
+    }
+    .heart::before,.heart::after{
+      content:"";
+      position:absolute;
+      width:14px;height:14px;
+      background:var(--accent);
+      border-radius:50%;
+    }
+    .heart::before{left:-7px;top:0}
+    .heart::after{top:-7px;left:0}
+
+    @keyframes floatUp{
+      from{transform:translateY(20vh) rotate(45deg) scale(.8)}
+      to{transform:translateY(-120vh) rotate(45deg) scale(1.2); opacity:.1}
+    }
+
+    header{
+      text-align:center;
+      margin-bottom:22px;
+    }
+    .title{
+      font-family:"Great Vibes", "Poppins", cursive;
+      font-size: clamp(42px, 7vw, 86px);
+      line-height:1;
+      margin:0 0 6px;
+      letter-spacing:.5px;
+      text-shadow:0 10px 30px rgba(0,0,0,.45), 0 0 0 transparent;
+    }
+    .subtitle{
+      font-weight:300;
+      color:var(--muted);
+      margin:0;
+      font-size:clamp(14px,2.4vw,18px);
+    }
+
+    .card{
+      width:min(900px, 92vw);
+      background:var(--card);
+      border:1px solid var(--card-border);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      padding:28px;
+    }
+    .row{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:22px;
+    }
+    @media (max-width: 860px){
+      .row{grid-template-columns:1fr; gap:14px}
+    }
+
+    .note{
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border:1px dashed rgba(255,255,255,.28);
+      border-radius:18px;
+      padding:20px 18px;
+    }
+    .note h2{
+      margin:0 0 10px;
+      font-size:22px;
+      letter-spacing:.4px;
+    }
+    .note p{margin:.4em 0}
+    .poem{
+      font-size:18px;
+    }
+    .poem span{
+      display:block;
+      margin:.3em 0;
+    }
+    .signature{
+      margin-top:14px;
+      color:#fff;
+      opacity:.85;
+      font-style:italic;
+    }
+
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:18px;
+    }
+    .btn{
+      appearance:none;
+      border:none;
+      cursor:pointer;
+      padding:12px 18px;
+      border-radius:14px;
+      font-weight:600;
+      letter-spacing:.2px;
+      transition:.2s ease;
+      box-shadow:0 10px 18px rgba(0,0,0,.18);
+    }
+    .btn-primary{
+      background:linear-gradient(135deg, var(--accent), #ff6a95);
+      color:white;
+    }
+    .btn-primary:hover{transform:translateY(-1px); filter:brightness(1.05)}
+    .btn-ghost{
+      background:transparent;
+      color:var(--accent-2);
+      border:1px solid rgba(255,155,179,.5);
+    }
+    .counter{
+      display:flex; align-items:center; gap:10px;
+      color:var(--muted); font-size:14px;
+    }
+    .dot{
+      width:8px;height:8px;border-radius:50%;
+      background:var(--accent-2); box-shadow:0 0 12px var(--accent-2);
+    }
+
+    /* Surat bisa dibuka/tutup */
+    details{
+      margin-top:14px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:14px;
+      padding:12px 14px;
+    }
+    summary{
+      cursor:pointer;
+      list-style:none;
+      outline:none;
+      display:flex; align-items:center; gap:8px;
+      font-weight:600;
+    }
+    summary::-webkit-details-marker{display:none}
+    .letter{
+      margin-top:8px;
+      color:#fefefe;
+      opacity:.92;
+    }
+
+    /* Footer kecil */
+    footer{
+      margin-top:18px;
+      text-align:center;
+      font-size:12px;
+      color:var(--muted);
+      opacity:.9;
+    }
+    a{color:#ffd6e1}
+  </style>
+</head>
+<body>
+  <!-- Latar partikel hati -->
+  <div class="hearts" aria-hidden="true" id="hearts"></div>
+
+  <main class="wrap" role="main">
+    <header>
+      <h1 class="title">Untukmu, Heriyanti</h1>
+      <p class="subtitle">sebaris rasa, selaut doa — dari seseorang yang mencintaimu.</p>
+    </header>
+
+    <section class="card" aria-label="Kartu ungkapan cinta">
+      <div class="row">
+        <div class="note">
+          <h2>Hai, Heriyanti ❤️</h2>
+          <p class="poem" aria-label="Puisi cinta">
+            <span>Aku jatuh pada caramu tersenyum,</span>
+            <span>pada tatap yang pelan—namun sampai paling dalam.</span>
+            <span>Di antara riuh dunia, kamu adalah tenangku,</span>
+            <span>dan di antara banyak kemungkinan, aku memilih kamu.</span>
+          </p>
+          <p>
+            Terima kasih sudah hadir, menumbuhkan yang baik dalam diriku.
+            Aku tak butuh apa-apa yang megah—cukup genggamanmu,
+            dan kesempatan untuk terus menjaga bahagiamu.
+          </p>
+          <p class="signature">— dengan sepenuh hati, pasanganmu</p>
+
+          <details>
+            <summary aria-label="Buka surat">💌 Buka surat kecil untukmu</summary>
+            <div class="letter">
+              Saat lelah, berteduhlah di pundakku. Saat takut, biarkan aku menggenggam.
+              Jika esok tak mudah, kita hadapi berdua. Aku mencintaimu, Heriyanti—hari ini, esok, dan seterusnya.
+            </div>
+          </details>
+
+          <div class="actions">
+            <button class="btn btn-primary" id="btnConfetti" aria-label="Sebarkan hati">Sebarkan hati</button>
+            <button class="btn btn-ghost" id="btnListen" aria-label="Dengarkan detak">Dengarkan detak</button>
+            <div class="counter" aria-live="polite" id="counterWrap">
+              <div class="dot"></div>
+              <span id="counterText">Hati berdebar: 0 kali</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="note" aria-label="Catatan kecil">
+          <h2>Kenapa kamu istimewa</h2>
+          <ul>
+            <li>Matamu yang jujur, membuatku pulang.</li>
+            <li>Tawamu yang renyah, melumerkan resah.</li>
+            <li>Caramu mendengar, membuatku tumbuh.</li>
+            <li>Dan caramu mencinta, membuatku yakin.</li>
+          </ul>
+          <p style="margin-top:10px;color:var(--muted);font-size:14px">
+            <em>PS:</em> Jika kamu menemukan halaman ini, berarti aku benar-benar jatuh hati. 🌹
+          </p>
+        </aside>
+      </div>
+
+      <footer>
+        Dibuat khusus untuk <strong>Heriyanti</strong>. Kode ini milik kita berdua. ✨
+      </footer>
+    </section>
+  </main>
+
+  <audio id="bpm" preload="auto">
+    <!-- bunyi lembut klik/metronome hati -->
+    <source src="data:audio/wav;base64,UklGRmQAAABXQVZFZm10IBAAAAABAAIARKwAABCxAAACABYAZGF0YQAAAAAA//8AAP//AP//AP8A//8A/wD/AP//AP//AP8A//8A/wD/AP//AP//AP8A//8A/wD/AP//AP//AP8A" type="audio/wav">
+  </audio>
+
+  <script>
+    // Utility: random
+    const rand = (min, max) => Math.random() * (max - min) + min;
+
+    // Buat partikel hati mengapung di latar
+    (function spawnBackgroundHearts(){
+      const container = document.getElementById('hearts');
+      const total = 24;
+      for(let i=0;i<total;i++){
+        const h = document.createElement('div');
+        h.className = 'heart';
+        const size = rand(8,18);
+        h.style.width = h.style.height = size+'px';
+        h.style.left = rand(-5,100)+'vw';
+        h.style.bottom = rand(-10,30)+'vh';
+        h.style.opacity = (0.25 + Math.random()*0.5).toFixed(2);
+        h.style.animationDuration = rand(8,18)+'s';
+        h.style.animationDelay = rand(-15,0)+'s';
+        container.appendChild(h);
+      }
+    })();
+
+    // Tombol "Sebarkan hati" -> confetti hati sementara
+    const btn = document.getElementById('btnConfetti');
+    const counterText = document.getElementById('counterText');
+    let beats = 0;
+
+    function burstHearts(x, y, n=26){
+      for(let i=0;i<n;i++){
+        const h = document.createElement('div');
+        h.className = 'heart';
+        const size = rand(10,22);
+        h.style.width = h.style.height = size+'px';
+        h.style.left = (x - size/2) + 'px';
+        h.style.top  = (y - size/2) + 'px';
+        h.style.position = 'fixed';
+        // animasi manual partikel
+        const angle = rand(0, Math.PI*2);
+        const dist = rand(80, 220);
+        const tx = Math.cos(angle)*dist;
+        const ty = Math.sin(angle)*dist;
+        h.style.transition = 'transform 900ms cubic-bezier(.2,.7,0,1), opacity 900ms ease';
+        document.body.appendChild(h);
+        requestAnimationFrame(()=>{
+          h.style.transform = `translate(${tx}px, ${ty}px) rotate(45deg) scale(1.1)`;
+          h.style.opacity = 0;
+        });
+        setTimeout(()=>h.remove(), 980);
+      }
+    }
+
+    btn.addEventListener('click', (e)=>{
+      burstHearts(e.clientX, e.clientY);
+      beats += Math.floor(rand(3,8));
+      counterText.textContent = `Hati berdebar: ${beats} kali`;
+    });
+
+    // Tombol "Dengarkan detak" -> klik metronome lembut
+    const btnListen = document.getElementById('btnListen');
+    const metronome = document.getElementById('bpm');
+    let playing = false;
+    let tickInterval;
+
+    function playTick(){
+      try{
+        metronome.currentTime = 0;
+        metronome.play();
+      }catch(_){}
+    }
+
+    btnListen.addEventListener('click', async ()=>{
+      if(!playing){
+        // mulai "detak" sekitar 72 BPM
+        playing = true;
+        btnListen.textContent = 'Heningkan detak';
+        let bpm = 72;
+        playTick();
+        tickInterval = setInterval(playTick, Math.round(60000/bpm));
+      }else{
+        playing = false;
+        btnListen.textContent = 'Dengarkan detak';
+        clearInterval(tickInterval);
+        metronome.pause();
+      }
+    });
+
+    // Prefer-reduced-motion: kurangi animasi untuk aksesibilitas
+    const media = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (media.matches){
+      document.querySelectorAll('.heart').forEach(h=>h.style.animation='none');
+    }
+  </script>
+</body>
+</html>
