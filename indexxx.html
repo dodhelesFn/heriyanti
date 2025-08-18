@@ -174,20 +174,7 @@
     /* Reveal on scroll */
     .reveal{ opacity:0; transform:translateY(12px); transition:opacity .6s ease, transform .6s ease }
     .reveal.visible{ opacity:1; transform:none }
-  
-/* Responsif tambahan untuk mobile Android */
-@media (max-width:900px){
-  .gallery{ grid-template-columns:repeat(2,1fr); }
-}
-@media (max-width:640px){
-  .gallery{ grid-template-columns:1fr; }
-  .nav{ flex-wrap:wrap; }
-  .nav a{ flex:1 1 100%; text-align:center }
-}
-.hero .photo{ min-height: clamp(220px, 50vw, 340px); }
-img{ max-width:100%; height:auto; }
-
-</style>
+  </style>
 </head>
 <body>
   <!-- ===== floating hearts ===== -->
