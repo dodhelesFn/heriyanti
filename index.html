@@ -1,375 +1,498 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Untuk Heriyanti ❤️</title>
-  <meta name="description" content="Ungkapan cinta sederhana untuk Heriyanti." />
-  <!-- Google Fonts (opsional; ada fallback font) -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Great+Vibes&display=swap" rel="stylesheet">
+  <title>Heriyanti — Calon Istriku Tercantik</title>
+  <meta name="description" content="Sebuah halaman cinta untuk Heriyanti, calon istriku tercantik." />
+  <meta property="og:title" content="Heriyanti — Calon Istriku Tercantik" />
+  <meta property="og:description" content="Sebuah halaman cinta untuk Heriyanti, calon istriku tercantik." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://picsum.photos/1200/630?blur=3" />
+  <meta name="theme-color" content="#ff6fa3" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
   <style>
     :root{
-      --bg1:#0f0c29;
-      --bg2:#302b63;
-      --bg3:#24243e;
-      --accent:#ff4d79;
-      --accent-2:#ff9bb3;
-      --text:#f7f7fb;
-      --muted:#cfd2ff;
-      --card:rgba(255,255,255,.08);
-      --card-border:rgba(255,255,255,.18);
-      --shadow:0 10px 30px rgba(0,0,0,.35);
+      --bg:#0f0f12;
+      --card:#17171c;
+      --text:#f6f7fb;
+      --muted:#b9bdc9;
+      --accent:#ff6fa3;
+      --accent-2:#ffc2d8;
+      --ring: 0 0 0 3px color-mix(in srgb, var(--accent) 35%, transparent);
+      --radius:18px;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --glass: rgba(255,255,255,.06);
+      --gradient: radial-gradient(1200px 1200px at 10% -10%, #ff6fa320 0%, transparent 50%),
+                  radial-gradient(1200px 1200px at 110% 10%, #9b8cff20 0%, transparent 50%),
+                  linear-gradient(180deg, #0e0e12 0%, #13131a 100%);
     }
+
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
-      margin:0;
-      color:var(--text);
-      font:16px/1.6 "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      background: radial-gradient(1200px 600px at 20% -10%,#4a3aff22, transparent),
-                  linear-gradient(135deg,var(--bg1),var(--bg2) 50%,var(--bg3));
+      margin:0; font-family:Poppins, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+      color:var(--text); background:var(--gradient), var(--bg);
       overflow-x:hidden;
     }
-    /* animasi gradient halus */
-    @keyframes gradientShift{
-      0%{background-position:0% 50%}
-      50%{background-position:100% 50%}
-      100%{background-position:0% 50%}
-    }
-    .wrap{
-      min-height:100%;
-      display:grid;
-      place-items:center;
-      padding:32px 16px 80px;
-      position:relative;
-      isolation:isolate;
-    }
-    /* Partikel hati di latar */
-    .hearts{
-      position:fixed;
-      inset:0;
-      overflow:hidden;
-      z-index:-1;
-      pointer-events:none;
-    }
-    .heart{
-      position:absolute;
-      width:14px;height:14px;
-      background:var(--accent);
-      transform:rotate(45deg);
-      opacity:.6;
-      filter:drop-shadow(0 8px 12px rgba(255,77,121,.35));
-      animation: floatUp linear forwards;
-    }
-    .heart::before,.heart::after{
-      content:"";
-      position:absolute;
-      width:14px;height:14px;
-      background:var(--accent);
-      border-radius:50%;
-    }
-    .heart::before{left:-7px;top:0}
-    .heart::after{top:-7px;left:0}
 
-    @keyframes floatUp{
-      from{transform:translateY(20vh) rotate(45deg) scale(.8)}
-      to{transform:translateY(-120vh) rotate(45deg) scale(1.2); opacity:.1}
+    /* Floating hearts background */
+    .hearts{position:fixed; inset:0; pointer-events:none; z-index:-1; opacity:.5}
+    .hearts span{
+      position:absolute; bottom:-60px; width:14px; height:14px; background:var(--accent);
+      transform:rotate(45deg); animation:float 12s linear infinite;
+      filter:drop-shadow(0 4px 12px rgba(255,111,163,.35));
+    }
+    .hearts span::before, .hearts span::after{
+      content:""; position:absolute; width:14px; height:14px; background:var(--accent); border-radius:50%;
+    }
+    .hearts span::before{ left:-7px; }
+    .hearts span::after{ top:-7px; }
+    @keyframes float{
+      0%{transform:translateY(0) rotate(45deg) scale(.6); opacity:0}
+      10%{opacity:.9}
+      100%{transform:translateY(-120vh) rotate(45deg) scale(1.1); opacity:0}
     }
 
     header{
-      text-align:center;
-      margin-bottom:22px;
+      position:sticky; top:0; z-index:20; backdrop-filter: blur(10px);
+      background:linear-gradient(180deg, rgba(15,15,18,.7), rgba(15,15,18,.3));
+      border-bottom:1px solid rgba(255,255,255,.06);
     }
-    .title{
-      font-family:"Great Vibes", "Poppins", cursive;
-      font-size: clamp(42px, 7vw, 86px);
-      line-height:1;
-      margin:0 0 6px;
-      letter-spacing:.5px;
-      text-shadow:0 10px 30px rgba(0,0,0,.45), 0 0 0 transparent;
+    .nav{
+      max-width:1080px; margin:auto; padding:12px 20px; display:flex; align-items:center; gap:14px;
+    }
+    .brand{font-weight:700; letter-spacing:.5px}
+    .spacer{flex:1}
+    .nav a{
+      color:var(--text); text-decoration:none; padding:8px 12px; border-radius:12px;
+    }
+    .nav a:hover{ background:var(--glass) }
+
+    .container{max-width:1080px; margin:0 auto; padding:0 20px}
+
+    .hero{
+      display:grid; grid-template-columns:1.15fr .85fr; gap:28px; align-items:center;
+      padding:60px 0 30px;
+    }
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.08); border-radius:var(--radius); box-shadow:var(--shadow);
+    }
+    .hero .intro{ padding:32px; }
+    .eyebrow{
+      display:inline-flex; align-items:center; gap:8px; font-size:.9rem; color:var(--accent-2);
+      background:rgba(255,111,163,.12); border:1px solid rgba(255,111,163,.35);
+      padding:8px 12px; border-radius:999px;
+    }
+    h1{
+      font-family: "Playfair Display", serif; font-size: clamp(36px, 5vw, 64px);
+      line-height:1.1; margin:14px 0 10px;
     }
     .subtitle{
-      font-weight:300;
-      color:var(--muted);
-      margin:0;
-      font-size:clamp(14px,2.4vw,18px);
+      font-size:1.05rem; color:var(--muted);
     }
-
-    .card{
-      width:min(900px, 92vw);
-      background:var(--card);
-      border:1px solid var(--card-border);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-radius:24px;
-      box-shadow:var(--shadow);
-      padding:28px;
-    }
-    .row{
-      display:grid;
-      grid-template-columns:1.2fr .8fr;
-      gap:22px;
-    }
-    @media (max-width: 860px){
-      .row{grid-template-columns:1fr; gap:14px}
-    }
-
-    .note{
-      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      border:1px dashed rgba(255,255,255,.28);
-      border-radius:18px;
-      padding:20px 18px;
-    }
-    .note h2{
-      margin:0 0 10px;
-      font-size:22px;
-      letter-spacing:.4px;
-    }
-    .note p{margin:.4em 0}
-    .poem{
-      font-size:18px;
-    }
-    .poem span{
-      display:block;
-      margin:.3em 0;
-    }
-    .signature{
-      margin-top:14px;
-      color:#fff;
-      opacity:.85;
-      font-style:italic;
-    }
-
-    .actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:12px;
-      margin-top:18px;
-    }
+    .actions{ display:flex; gap:12px; margin-top:18px; flex-wrap:wrap }
     .btn{
-      appearance:none;
-      border:none;
-      cursor:pointer;
-      padding:12px 18px;
-      border-radius:14px;
-      font-weight:600;
-      letter-spacing:.2px;
-      transition:.2s ease;
-      box-shadow:0 10px 18px rgba(0,0,0,.18);
+      border:none; padding:12px 16px; border-radius:12px; font-weight:600; cursor:pointer;
+      color:#0f0f12; background:var(--accent); box-shadow: 0 6px 18px rgba(255,111,163,.35);
     }
-    .btn-primary{
-      background:linear-gradient(135deg, var(--accent), #ff6a95);
-      color:white;
+    .btn.secondary{
+      background:transparent; color:var(--text); border:1px solid rgba(255,255,255,.14)
     }
-    .btn-primary:hover{transform:translateY(-1px); filter:brightness(1.05)}
-    .btn-ghost{
-      background:transparent;
-      color:var(--accent-2);
-      border:1px solid rgba(255,155,179,.5);
+    .btn:focus-visible{ outline: none; box-shadow: var(--ring) }
+
+    .hero .photo{
+      position:relative; overflow:hidden; min-height:340px;
+      background:url('https://i.ibb.co.com/60sPfqx0/heri1.jpg') center/cover no-repeat;
+      border-radius:var(--radius);
     }
-    .counter{
-      display:flex; align-items:center; gap:10px;
-      color:var(--muted); font-size:14px;
-    }
-    .dot{
-      width:8px;height:8px;border-radius:50%;
-      background:var(--accent-2); box-shadow:0 0 12px var(--accent-2);
+    .photo::after{
+      content:"Heriyanti"; position:absolute; bottom:12px; right:16px; font-weight:600; letter-spacing:.5px;
+      background:rgba(0,0,0,.45); color:white; padding:6px 10px; border-radius:10px; font-size:.9rem;
     }
 
-    /* Surat bisa dibuka/tutup */
-    details{
-      margin-top:14px;
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.18);
-      border-radius:14px;
-      padding:12px 14px;
+    section{margin:36px 0}
+    .grid{ display:grid; gap:18px }
+    .cols-3{ grid-template-columns: repeat(3, 1fr) }
+    .cols-2{ grid-template-columns: repeat(2, 1fr) }
+    @media (max-width:900px){
+      .hero{ grid-template-columns:1fr; }
+      .cols-3{ grid-template-columns:1fr 1fr }
     }
-    summary{
-      cursor:pointer;
-      list-style:none;
-      outline:none;
-      display:flex; align-items:center; gap:8px;
-      font-weight:600;
-    }
-    summary::-webkit-details-marker{display:none}
-    .letter{
-      margin-top:8px;
-      color:#fefefe;
-      opacity:.92;
-    }
+    @media (max-width:640px){ .cols-3, .cols-2{ grid-template-columns:1fr } }
 
-    /* Footer kecil */
+    .panel{ padding:24px; border-radius:var(--radius); border:1px solid rgba(255,255,255,.08); background:var(--card) }
+
+    .title{ font-family:"Playfair Display", serif; font-size:1.8rem; margin:6px 0 18px }
+    .muted{ color:var(--muted) }
+
+    /* Timeline */
+    .timeline{ position:relative; padding-left:24px }
+    .timeline::before{
+      content:""; position:absolute; left:8px; top:0; bottom:0; width:2px; background:linear-gradient(var(--accent), transparent);
+      opacity:.5
+    }
+    .event{ position:relative; padding:14px 0 14px 12px }
+    .event::before{
+      content:""; position:absolute; left:-1px; top:18px; width:10px; height:10px; border-radius:50%;
+      background:var(--accent); box-shadow: 0 0 0 4px rgba(255,111,163,.25)
+    }
+    .event h4{ margin:0 0 6px }
+    .badge{ display:inline-block; font-size:.8rem; color:#111; background:var(--accent-2); padding:4px 10px; border-radius:999px; }
+
+    /* Gallery */
+    .gallery{ display:grid; grid-template-columns:repeat(3, 1fr); gap:10px }
+    .gallery img{ width:100%; height:220px; object-fit:cover; border-radius:16px; transition:transform .3s ease }
+    .gallery img:hover{ transform: translateY(-4px) }
+
+    /* Countdown */
+    .countdown{
+      display:flex; gap:12px; flex-wrap:wrap
+    }
+    .tick{ flex:1 1 120px; text-align:center; padding:16px; border-radius:16px; background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.08) }
+    .tick .num{ font-size:2rem; font-weight:700 }
+    .tick .lbl{ font-size:.85rem; color:var(--muted) }
+
+    /* Guestbook */
+    form{ display:grid; gap:10px }
+    input, textarea{
+      width:100%; padding:12px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.12);
+      background:#131319; color:var(--text);
+    }
+    input:focus, textarea:focus{ outline:none; box-shadow:var(--ring) }
+    .messages{ display:grid; gap:10px; margin-top:12px }
+    .msg{ padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,.08); background:#14141b }
+    .msg small{ color:var(--muted) }
+
     footer{
-      margin-top:18px;
-      text-align:center;
-      font-size:12px;
-      color:var(--muted);
-      opacity:.9;
+      margin:40px 0 60px; text-align:center; color:var(--muted)
     }
-    a{color:#ffd6e1}
+
+    /* Reveal on scroll */
+    .reveal{ opacity:0; transform:translateY(12px); transition:opacity .6s ease, transform .6s ease }
+    .reveal.visible{ opacity:1; transform:none }
   </style>
 </head>
 <body>
-  <!-- Latar partikel hati -->
-  <div class="hearts" aria-hidden="true" id="hearts"></div>
+  <!-- ===== floating hearts ===== -->
+  <div class="hearts" aria-hidden="true"></div>
 
-  <main class="wrap" role="main">
-    <header>
-      <h1 class="title">Untukmu, Heriyanti</h1>
-      <p class="subtitle">sebaris rasa, selaut doa — dari seseorang yang mencintaimu.</p>
-    </header>
+  <header>
+    <nav class="nav">
+      <div class="brand">❤️ Heriyanti</div>
+      <div class="spacer"></div>
+      <a href="#tentang" aria-label="Tentang">Tentang</a>
+      <a href="#kisah" aria-label="Kisah">Kisah</a>
+      <a href="#galeri" aria-label="Galeri">Galeri</a>
+      <a href="#hitung-mundur" aria-label="Hitung Mundur">Countdown</a>
+      <a href="#buku-tamu" aria-label="Buku Tamu">Buku Tamu</a>
+    </nav>
+  </header>
 
-    <section class="card" aria-label="Kartu ungkapan cinta">
-      <div class="row">
-        <div class="note">
-          <h2>Hai, Heriyanti ❤️</h2>
-          <p class="poem" aria-label="Puisi cinta">
-            <span>Aku jatuh pada caramu tersenyum,</span>
-            <span>pada tatap yang pelan—namun sampai paling dalam.</span>
-            <span>Di antara riuh dunia, kamu adalah tenangku,</span>
-            <span>dan di antara banyak kemungkinan, aku memilih kamu.</span>
-          </p>
-          <p>
-            Terima kasih sudah hadir, menumbuhkan yang baik dalam diriku.
-            Aku tak butuh apa-apa yang megah—cukup genggamanmu,
-            dan kesempatan untuk terus menjaga bahagiamu.
-          </p>
-          <p class="signature">— dengan sepenuh hati, pasanganmu</p>
+  <main class="container">
+    <!-- ===== hero ===== -->
+    <section class="hero">
+      <div class="intro card reveal">
+        <span class="eyebrow">Untuk <strong>Heriyanti</strong> — calon istriku tercantik</span>
+        <h1>Aku cinta kamu, hari ini, besok, dan selamanya.</h1>
+        <p class="subtitle" id="typewriter" aria-live="polite">#CalonIstriTercantik</p>
 
-          <details>
-            <summary aria-label="Buka surat">💌 Buka surat kecil untukmu</summary>
-            <div class="letter">
-              Saat lelah, berteduhlah di pundakku. Saat takut, biarkan aku menggenggam.
-              Jika esok tak mudah, kita hadapi berdua. Aku mencintaimu, Heriyanti—hari ini, esok, dan seterusnya.
-            </div>
-          </details>
-
-          <div class="actions">
-            <button class="btn btn-primary" id="btnConfetti" aria-label="Sebarkan hati">Sebarkan hati</button>
-            <button class="btn btn-ghost" id="btnListen" aria-label="Dengarkan detak">Dengarkan detak</button>
-            <div class="counter" aria-live="polite" id="counterWrap">
-              <div class="dot"></div>
-              <span id="counterText">Hati berdebar: 0 kali</span>
-            </div>
-          </div>
+        <div class="actions">
+          <button class="btn" id="btnPlay">Putar Musik</button>
+          <button class="btn secondary" id="btnShare">Bagikan Halaman</button>
+          <a class="btn secondary" href="#galeri">Lihat Galeri</a>
         </div>
-
-        <aside class="note" aria-label="Catatan kecil">
-          <h2>Kenapa kamu istimewa</h2>
-          <ul>
-            <li>Matamu yang jujur, membuatku pulang.</li>
-            <li>Tawamu yang renyah, melumerkan resah.</li>
-            <li>Caramu mendengar, membuatku tumbuh.</li>
-            <li>Dan caramu mencinta, membuatku yakin.</li>
-          </ul>
-          <p style="margin-top:10px;color:var(--muted);font-size:14px">
-            <em>PS:</em> Jika kamu menemukan halaman ini, berarti aku benar-benar jatuh hati. 🌹
-          </p>
-        </aside>
+        <audio id="bgm" loop src="heri.mp3"></audio>
       </div>
 
-      <footer>
-        Dibuat khusus untuk <strong>Heriyanti</strong>. Kode ini milik kita berdua. ✨
-      </footer>
+      <div class="photo reveal" role="img" aria-label="Foto indah untuk Heriyanti">
+        <!-- Ganti URL background di CSS .hero .photo untuk foto kalian -->
+      </div>
+    </section>
+
+    <!-- ===== tentang ===== -->
+    <section id="tentang" class="grid cols-2">
+      <div class="panel reveal">
+        <h2 class="title">Tentang Heriyanti</h2>
+        <p class="muted">
+          Ini adalah halaman kecil yang kubuat khusus untukmu, <strong>Heriyanti</strong>.
+          Terima kasih sudah hadir dan membuat hariku lebih bermakna. Semoga halaman ini jadi
+          pengingat kecil betapa kamu istimewa.
+        </p>
+        <ul>
+          <li>Kepribadian: Lembut, cerdas, dan lucu 🤍</li>
+          <li>Hobi: Tidur &#128514;</li>
+          <li>Makanan favorit: Coto Makassar &#128513;</li>
+        </ul>
+      </div>
+      <div class="panel reveal">
+        <h2 class="title">Surat Cinta Singkat</h2>
+        <p>
+          Ketika dunia terasa bising, suaramu jadi tenang. Ketika hari terasa berat, senyummu jadi ringan.
+          Aku tak sabar menyebutmu: istriku.
+        </p>
+        <blockquote class="muted">“Cinta bukan mencari yang sempurna, tapi menyempurnakan yang ada.”</blockquote>
+      </div>
+    </section>
+
+    <!-- ===== kisah ===== -->
+    <section id="kisah" class="panel reveal">
+      <h2 class="title">Kisah Kita</h2>
+      <div class="timeline">
+        <div class="event">
+          <h4>Pertama Bertemu <span class="badge"> 01 oktober 2025</span></h4>
+          <div class="muted">Di sinilah semua dimulai…</div>
+        </div>
+        <div class="event">
+          <h4>Janji Pertama <span class="badge">03 oktober 2025</span></h4>
+          <div class="muted">Kita memilih tumbuh bersama.</div>
+        </div>
+        <div class="event">
+          <h4>Menuju Halal <span class="badge">Menikah Di Tahun 2026</span></h4>
+          <div class="muted">Bismillah, semoga dimudahkan. 🤲</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== galeri ===== -->
+    <section id="galeri" class="panel reveal">
+      <h2 class="title">Galeri untuk Heriyanti</h2>
+      <p class="muted">Ganti gambar-gambar berikut dengan foto kalian ya!</p>
+      <div class="gallery">
+        <img src="https://i.ibb.co.com/PvtCr5qH/1.jpg=80&w=900&auto=format&fit=crop" alt="Kenangan 1">
+        <img src="https://i.ibb.co.com/PGfCCYKW/2.jpg=80&w=900&auto=format&fit=crop" alt="Kenangan 2">
+        <img src="https://i.ibb.co.com/WNTB2Qhm/3.jpg=80&w=900&auto=format&fit=crop" alt="Kenangan 3">
+        <img src="https://i.ibb.co.com/xt20dJdW/4.jpg=80&w=900&auto=format&fit=crop" alt="Kenangan 4">
+        <img src="https://i.ibb.co.com/fGHzdqLc/5.jpg=80&w=900&auto=format&fit=crop" alt="Kenangan 5">
+        <img src="https://i.ibb.co.com/zWySNnTb/6.jpg=80&w=900&auto=format&fit=crop" alt="Kenangan 6">
+      </div>
+    </section>
+
+    <!-- ===== countdown ===== -->
+    <section id="hitung-mundur" class="panel reveal">
+      <h2 class="title">Hitung Mundur Menuju Hari Bahagia</h2>
+      <!-- =====<p class="muted">Atur tanggal di dalam kode (variabel <code>weddingDate</code>), misal <em>2026-05-05</em>.</p>===== -->
+      <div class="countdown" role="timer" aria-live="polite">
+        <div class="tick"><div class="num" id="d">—</div><div class="lbl">Hari</div></div>
+        <div class="tick"><div class="num" id="h">—</div><div class="lbl">Jam</div></div>
+        <div class="tick"><div class="num" id="m">—</div><div class="lbl">Menit</div></div>
+        <div class="tick"><div class="num" id="s">—</div><div class="lbl">Detik</div></div>
+      </div>
+    </section>
+
+    <!-- ===== buku tamu ===== -->
+    <section id="buku-tamu" class="grid cols-2">
+      <div class="panel reveal">
+        <h2 class="title">Buku Tamu</h2>
+        <form id="guestForm" autocomplete="off">
+          <input type="text" id="nama" placeholder="Namamu" required>
+          <textarea id="pesan" rows="3" placeholder="Tulis pesan manis untuk Heriyanti…" required></textarea>
+          <button class="btn" type="submit">Kirim</button>
+        </form>
+        <div class="messages" id="messages" aria-live="polite"></div>
+      </div>
+
+      <div class="panel reveal">
+        <h2 class="title">Detail Acara</h2>
+        <ul class="muted">
+          <li>Tanggal: <strong id="tglLabel">[atur di kode]</strong></li>
+          <li>Lokasi: Palopo </li>
+          <li>Dress code: Formal</li>
+        </ul>
+        <a class="btn secondary" id="btnAddCalendar">Tambah ke Kalender</a>
+      </div>
     </section>
   </main>
 
-  <audio id="bpm" preload="auto">
-    <!-- bunyi lembut klik/metronome hati -->
-    <source src="data:audio/wav;base64,UklGRmQAAABXQVZFZm10IBAAAAABAAIARKwAABCxAAACABYAZGF0YQAAAAAA//8AAP//AP//AP8A//8A/wD/AP//AP//AP8A//8A/wD/AP//AP//AP8A//8A/wD/AP//AP//AP8A" type="audio/wav">
-  </audio>
+  <footer>
+    Dibuat dengan ♥ untuk <strong>Heriyanti</strong>. © <span id="year"></span>
+  </footer>
 
   <script>
-    // Utility: random
-    const rand = (min, max) => Math.random() * (max - min) + min;
+    /* ============================
+       CUSTOMIZABLE SETTINGS
+       ============================ */
+    // GANTI tanggal ini ke tanggal spesial kalian (format: YYYY-MM-DDTHH:MM)
+    const weddingDate = "2026-05-05T10:00"; // contoh
+    const pageFor = "Heriyanti"; // nama yang muncul di brand/hero
 
-    // Buat partikel hati mengapung di latar
-    (function spawnBackgroundHearts(){
-      const container = document.getElementById('hearts');
-      const total = 24;
-      for(let i=0;i<total;i++){
-        const h = document.createElement('div');
-        h.className = 'heart';
-        const size = rand(8,18);
-        h.style.width = h.style.height = size+'px';
-        h.style.left = rand(-5,100)+'vw';
-        h.style.bottom = rand(-10,30)+'vh';
-        h.style.opacity = (0.25 + Math.random()*0.5).toFixed(2);
-        h.style.animationDuration = rand(8,18)+'s';
-        h.style.animationDelay = rand(-15,0)+'s';
-        container.appendChild(h);
-      }
-    })();
-
-    // Tombol "Sebarkan hati" -> confetti hati sementara
-    const btn = document.getElementById('btnConfetti');
-    const counterText = document.getElementById('counterText');
-    let beats = 0;
-
-    function burstHearts(x, y, n=26){
-      for(let i=0;i<n;i++){
-        const h = document.createElement('div');
-        h.className = 'heart';
-        const size = rand(10,22);
-        h.style.width = h.style.height = size+'px';
-        h.style.left = (x - size/2) + 'px';
-        h.style.top  = (y - size/2) + 'px';
-        h.style.position = 'fixed';
-        // animasi manual partikel
-        const angle = rand(0, Math.PI*2);
-        const dist = rand(80, 220);
-        const tx = Math.cos(angle)*dist;
-        const ty = Math.sin(angle)*dist;
-        h.style.transition = 'transform 900ms cubic-bezier(.2,.7,0,1), opacity 900ms ease';
-        document.body.appendChild(h);
-        requestAnimationFrame(()=>{
-          h.style.transform = `translate(${tx}px, ${ty}px) rotate(45deg) scale(1.1)`;
-          h.style.opacity = 0;
-        });
-        setTimeout(()=>h.remove(), 980);
-      }
+    /* ============================
+       Floating hearts generator
+       ============================ */
+    const hearts = document.querySelector('.hearts');
+    for(let i=0;i<24;i++){
+      const h=document.createElement('span');
+      h.style.left = Math.random()*100 + '%';
+      h.style.animationDelay = (Math.random()*8)+'s';
+      h.style.animationDuration = (10 + Math.random()*10)+'s';
+      h.style.opacity = .4 + Math.random()*.5;
+      hearts.appendChild(h);
     }
 
-    btn.addEventListener('click', (e)=>{
-      burstHearts(e.clientX, e.clientY);
-      beats += Math.floor(rand(3,8));
-      counterText.textContent = `Hati berdebar: ${beats} kali`;
-    });
+    /* ============================
+       Typewriter subtitle
+       ============================ */
+    const phrases = [
+      "Calon istriku tercantik: " + pageFor + " ✨",
+      "Aku memilihmu, setiap hari. 💍",
+      "Menuju halal, bismillah. 🤲"
+    ];
+    const tw = document.getElementById('typewriter');
+    let pi=0, ci=0, typing=true;
+    function loopType(){
+      const text = phrases[pi];
+      tw.textContent = typing ? text.slice(0, ++ci) : text.slice(0, --ci);
+      if(typing && ci === text.length){ typing=false; setTimeout(loopType, 1200); }
+      else if(!typing && ci===0){ typing=true; pi=(pi+1)%phrases.length; setTimeout(loopType, 300); }
+      else setTimeout(loopType, typing?40:24);
+    }
+    loopType();
 
-    // Tombol "Dengarkan detak" -> klik metronome lembut
-    const btnListen = document.getElementById('btnListen');
-    const metronome = document.getElementById('bpm');
-    let playing = false;
-    let tickInterval;
-
-    function playTick(){
+    /* ============================
+       Background music controls
+       ============================ */
+    const audio = document.getElementById('bgm');
+    const btnPlay = document.getElementById('btnPlay');
+    btnPlay.addEventListener('click', async () => {
       try{
-        metronome.currentTime = 0;
-        metronome.play();
-      }catch(_){}
-    }
+        if(audio.paused){ await audio.play(); btnPlay.textContent = "Hentikan Musik"; }
+        else{ audio.pause(); btnPlay.textContent = "Putar Musik"; }
+      }catch(e){ alert("Tidak bisa memutar audio. Pastikan file 'your-romantic-song.mp3' tersedia."); }
+    });
 
-    btnListen.addEventListener('click', async ()=>{
-      if(!playing){
-        // mulai "detak" sekitar 72 BPM
-        playing = true;
-        btnListen.textContent = 'Heningkan detak';
-        let bpm = 72;
-        playTick();
-        tickInterval = setInterval(playTick, Math.round(60000/bpm));
+    /* ============================
+       Countdown & calendar
+       ============================ */
+    const dEl = document.getElementById('d');
+    const hEl = document.getElementById('h');
+    const mEl = document.getElementById('m');
+    const sEl = document.getElementById('s');
+    const tglLabel = document.getElementById('tglLabel');
+
+    function updateCountdown(){
+      const target = new Date(weddingDate);
+      if(isNaN(target)){ dEl.textContent=hEl.textContent=mEl.textContent=sEl.textContent="—"; return; }
+      tglLabel.textContent = target.toLocaleString(undefined, { dateStyle:'full', timeStyle:'short' });
+
+      const now = new Date();
+      const diff = target - now;
+      if(diff<=0){
+        dEl.textContent = "0"; hEl.textContent="0"; mEl.textContent="0"; sEl.textContent="0";
+        return;
+      }
+      const sec = Math.floor(diff/1000);
+      const days = Math.floor(sec/86400);
+      const hours = Math.floor((sec%86400)/3600);
+      const mins = Math.floor((sec%3600)/60);
+      const secs = sec%60;
+      dEl.textContent=days; hEl.textContent=hours; mEl.textContent=mins; sEl.textContent=secs;
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // Add to calendar (ICS)
+    document.getElementById('btnAddCalendar').addEventListener('click', () => {
+      const start = new Date(weddingDate);
+      if(isNaN(start)){ alert("Atur 'weddingDate' dulu ya!"); return; }
+      const end = new Date(start.getTime() + 2*60*60*1000); // +2 jam
+      function toICS(dt){
+        return dt.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}Z/,'Z');
+      }
+      const ics =
+`BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Love//Heriyanti Wedding//ID
+BEGIN:VEVENT
+UID:${Date.now()}@cinta.local
+DTSTAMP:${toICS(new Date())}
+DTSTART:${toICS(start)}
+DTEND:${toICS(end)}
+SUMMARY:Pernikahan ${pageFor}
+DESCRIPTION:Hari bahagia kita ✨
+END:VEVENT
+END:VCALENDAR`;
+      const blob = new Blob([ics], {type:'text/calendar'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = `Pernikahan-${pageFor}.ics`; a.click();
+      URL.revokeObjectURL(url);
+    });
+
+    /* ============================
+       Web Share API
+       ============================ */
+    document.getElementById('btnShare').addEventListener('click', async () => {
+      const shareData = {
+        title: document.title,
+        text: `Sebuah halaman cinta untuk ${pageFor}.`,
+        url: location.href
+      };
+      if(navigator.share){
+        try{ await navigator.share(shareData); }catch(e){}
       }else{
-        playing = false;
-        btnListen.textContent = 'Dengarkan detak';
-        clearInterval(tickInterval);
-        metronome.pause();
+        navigator.clipboard.writeText(location.href);
+        alert("Link sudah disalin ke clipboard!");
       }
     });
 
-    // Prefer-reduced-motion: kurangi animasi untuk aksesibilitas
-    const media = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if (media.matches){
-      document.querySelectorAll('.heart').forEach(h=>h.style.animation='none');
+    /* ============================
+       Guestbook (localStorage)
+       ============================ */
+    const form = document.getElementById('guestForm');
+    const messages = document.getElementById('messages');
+    const STORAGE_KEY = "guestbook-heriyanti";
+
+    function renderMessages(){
+      messages.innerHTML = "";
+      const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+      if(!data.length){
+        const empty = document.createElement('div');
+        empty.className = "muted";
+        empty.textContent = "Belum ada pesan. Jadilah yang pertama!";
+        messages.appendChild(empty);
+        return;
+      }
+      data.forEach(item=>{
+        const div = document.createElement('div');
+        div.className = "msg";
+        div.innerHTML = `<strong>${item.nama}</strong><br><small>${new Date(item.waktu).toLocaleString()}</small><p>${item.pesan}</p>`;
+        messages.appendChild(div);
+      });
     }
+    renderMessages();
+
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const nama = document.getElementById('nama').value.trim();
+      const pesan = document.getElementById('pesan').value.trim();
+      if(!nama || !pesan) return;
+      const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+      data.unshift({nama, pesan, waktu: Date.now()});
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      form.reset();
+      renderMessages();
+    });
+
+    /* ============================
+       Reveal on scroll (A11y-friendly)
+       ============================ */
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      })
+    }, {threshold:.15});
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+    /* ============================
+       Footer year
+       ============================ */
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
