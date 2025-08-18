@@ -363,11 +363,12 @@ img{ max-width:100%; height:auto; }
         </form>
 
         <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-analytics.js";
   import { 
     getFirestore, collection, addDoc, deleteDoc, doc,
     onSnapshot, query, orderBy, getDocs 
-  } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
+  } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
   // TODO: Ganti dengan config Firebase kamu
   const firebaseConfig = {
@@ -376,7 +377,8 @@ img{ max-width:100%; height:auto; }
     projectId: "heriyantialdo",
     storageBucket: "heriyantialdo.firebasestorage.app",
     messagingSenderId: "470452018084",
-    appId: "1:470452018084:web:84d87433a308015afe3f31"
+    appId: "1:470452018084:web:84d87433a308015afe3f31",
+    measurementId: "G-PE2PZG6C7H"
   };
 
   // Init Firebase
