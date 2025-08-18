@@ -156,16 +156,22 @@
     .tick .num{ font-size:2rem; font-weight:700 }
     .tick .lbl{ font-size:.85rem; color:var(--muted) }
 
-    /* Guestbook */
+    /* Guestbook + RSVP */
     form{ display:grid; gap:10px }
-    input, textarea{
+    input, textarea, select{
       width:100%; padding:12px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.12);
       background:#131319; color:var(--text);
     }
-    input:focus, textarea:focus{ outline:none; box-shadow:var(--ring) }
-    .messages{ display:grid; gap:10px; margin-top:12px }
+    input:focus, textarea:focus, select:focus{ outline:none; box-shadow:var(--ring) }
+    .messages{ display:grid; gap:10px; margin-top:12px; max-height:320px; overflow:auto; padding-right:6px }
     .msg{ padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,.08); background:#14141b }
     .msg small{ color:var(--muted) }
+
+    .rsvp-summary{ display:flex; gap:12px; flex-wrap:wrap; margin-top:12px }
+    .rsvp-card{ padding:12px 14px; border-radius:12px; background:#0f1114; border:1px solid rgba(255,255,255,.04); min-width:120px; text-align:center }
+    .rsvp-card .num{ font-weight:700; font-size:1.2rem }
+
+    .actions-row{ display:flex; gap:8px; flex-wrap:wrap }
 
     footer{
       margin:40px 0 60px; text-align:center; color:var(--muted)
@@ -287,7 +293,6 @@ img{ max-width:100%; height:auto; }
     <!-- ===== countdown ===== -->
     <section id="hitung-mundur" class="panel reveal">
       <h2 class="title">Hitung Mundur Menuju Hari Bahagia</h2>
-      <!-- =====<p class="muted">Atur tanggal di dalam kode (variabel <code>weddingDate</code>), misal <em>2026-05-05</em>.</p>===== -->
       <div class="countdown" role="timer" aria-live="polite">
         <div class="tick"><div class="num" id="d">—</div><div class="lbl">Hari</div></div>
         <div class="tick"><div class="num" id="h">—</div><div class="lbl">Jam</div></div>
@@ -296,16 +301,45 @@ img{ max-width:100%; height:auto; }
       </div>
     </section>
 
-    <!-- ===== buku tamu ===== -->
+    <!-- ===== buku tamu (dengan RSVP) ===== -->
     <section id="buku-tamu" class="grid cols-2">
       <div class="panel reveal">
-        <h2 class="title">Buku Tamu</h2>
-        <form id="guestForm" autocomplete="off">
+        <h2 class="title">Buku Tamu & Konfirmasi Kehadiran</h2>
+
+        <!-- --- Buku Tamu (existing) --- -->
+        <form id="guestForm" autocomplete="off" aria-label="Form buku tamu">
           <input type="text" id="nama" placeholder="Namamu" required>
           <textarea id="pesan" rows="3" placeholder="Tulis pesan manis untuk Heriyanti…" required></textarea>
-          <button class="btn" type="submit">Kirim</button>
+          <div class="actions-row">
+            <button class="btn" type="submit">Kirim</button>
+            <button class="btn secondary" type="button" id="btnClearMessages">Bersihkan Pesan (lokal)</button>
+          </div>
         </form>
         <div class="messages" id="messages" aria-live="polite"></div>
+
+        <hr style="margin:18px 0; border-color: rgba(255,255,255,.04)">
+
+        <!-- --- RSVP form --- -->
+        <h3 style="margin:0 0 8px">Konfirmasi Kehadiran</h3>
+        <p class="muted" style="margin-top:0">Isi formulir ini untuk konfirmasi kehadiranmu. Data disimpan aman di browser (local).</p>
+        <form id="rsvpForm" autocomplete="off" aria-label="Form konfirmasi kehadiran">
+          <input type="text" id="r_nama" placeholder="Namamu (untuk konfirmasi)" required>
+          <label for="r_hadir" class="muted" style="font-size:.9rem">Kehadiran</label>
+          <select id="r_hadir" required>
+            <option value="yes">Hadir</option>
+            <option value="no">Tidak Hadir</option>
+            <option value="maybe">Mungkin</option>
+          </select>
+          <input type="number" id="r_tamu" placeholder="Jumlah tamu (termasuk kamu)" min="1" value="1" required>
+          <input type="text" id="r_kontak" placeholder="Kontak (opsional: WA / telepon)">
+          <textarea id="r_pesan" rows="2" placeholder="Catatan / catatan khusus (opsional)"></textarea>
+          <div class="actions-row">
+            <button class="btn" type="submit">Konfirmasi Kehadiran</button>
+            <button class="btn secondary" type="button" id="btnExportRSVP">Unduh CSV</button>
+            <button class="btn secondary" type="button" id="btnClearRSVP">Hapus Semua RSVP (lokal)</button>
+          </div>
+        </form>
+
       </div>
 
       <div class="panel reveal">
@@ -315,6 +349,38 @@ img{ max-width:100%; height:auto; }
           <li>Lokasi: Palopo </li>
           <li>Dress code: Formal</li>
         </ul>
+
+        <div style="margin-top:18px">
+          <h3 style="margin:0 0 8px">Ringkasan RSVP</h3>
+          <div class="rsvp-summary" id="rsvpSummary" aria-live="polite">
+            <div class="rsvp-card">
+              <div class="num" id="r_total">0</div>
+              <div class="muted">Total RSVP</div>
+            </div>
+            <div class="rsvp-card">
+              <div class="num" id="r_yes">0</div>
+              <div class="muted">Hadir</div>
+            </div>
+            <div class="rsvp-card">
+              <div class="num" id="r_no">0</div>
+              <div class="muted">Tidak Hadir</div>
+            </div>
+            <div class="rsvp-card">
+              <div class="num" id="r_maybe">0</div>
+              <div class="muted">Mungkin</div>
+            </div>
+            <div class="rsvp-card">
+              <div class="num" id="r_guests">0</div>
+              <div class="muted">Total Tamu</div>
+            </div>
+          </div>
+
+          <div style="margin-top:12px">
+            <h4 style="margin:6px 0">Daftar RSVP (lokal)</h4>
+            <div id="rsvpList" style="max-height:240px; overflow:auto; padding-right:6px"></div>
+          </div>
+        </div>
+
         <a class="btn secondary" id="btnAddCalendar">Tambah ke Kalender</a>
       </div>
     </section>
@@ -452,7 +518,7 @@ END:VCALENDAR`;
     });
 
     /* ============================
-       Guestbook (localStorage)
+       Guestbook (localStorage) - existing behavior
        ============================ */
     const form = document.getElementById('guestForm');
     const messages = document.getElementById('messages');
@@ -471,7 +537,7 @@ END:VCALENDAR`;
       data.forEach(item=>{
         const div = document.createElement('div');
         div.className = "msg";
-        div.innerHTML = `<strong>${item.nama}</strong><br><small>${new Date(item.waktu).toLocaleString()}</small><p>${item.pesan}</p>`;
+        div.innerHTML = `<strong>${escapeHtml(item.nama)}</strong><br><small>${new Date(item.waktu).toLocaleString()}</small><p>${escapeHtml(item.pesan)}</p>`;
         messages.appendChild(div);
       });
     }
@@ -488,6 +554,177 @@ END:VCALENDAR`;
       form.reset();
       renderMessages();
     });
+
+    document.getElementById('btnClearMessages').addEventListener('click', ()=>{
+      if(confirm("Hapus semua pesan buku tamu dari localStorage?")) {
+        localStorage.removeItem(STORAGE_KEY);
+        renderMessages();
+      }
+    });
+
+    /* ============================
+       RSVP (localStorage)
+       ============================ */
+    const RSVP_KEY = "rsvp-heriyanti";
+    const rsvpForm = document.getElementById('rsvpForm');
+    const rsvpListEl = document.getElementById('rsvpList');
+    const r_total = document.getElementById('r_total');
+    const r_yes = document.getElementById('r_yes');
+    const r_no = document.getElementById('r_no');
+    const r_maybe = document.getElementById('r_maybe');
+    const r_guests = document.getElementById('r_guests');
+
+    function loadRSVP(){
+      const raw = localStorage.getItem(RSVP_KEY);
+      try {
+        return JSON.parse(raw || "[]");
+      } catch(e){
+        return [];
+      }
+    }
+
+    function saveRSVP(arr){
+      localStorage.setItem(RSVP_KEY, JSON.stringify(arr));
+      renderRSVP();
+    }
+
+    function renderRSVP(){
+      const data = loadRSVP();
+      // summary
+      let total = data.length;
+      let yes = 0, no = 0, maybe = 0, guests = 0;
+      data.forEach(i=>{
+        if(i.hadir === 'yes') yes++;
+        else if(i.hadir === 'no') no++;
+        else if(i.hadir === 'maybe') maybe++;
+        guests += Number(i.tamu) || 0;
+      });
+      r_total.textContent = total;
+      r_yes.textContent = yes;
+      r_no.textContent = no;
+      r_maybe.textContent = maybe;
+      r_guests.textContent = guests;
+
+      // list
+      rsvpListEl.innerHTML = "";
+      if(!data.length){
+        const e = document.createElement('div'); e.className = "muted"; e.textContent = "Belum ada konfirmasi.";
+        rsvpListEl.appendChild(e);
+        return;
+      }
+
+      data.forEach((it, idx)=>{
+        const div = document.createElement('div');
+        div.className = "msg";
+        const waktu = new Date(it.waktu).toLocaleString();
+        div.innerHTML = `<strong>${escapeHtml(it.nama)}</strong> <small class="muted">(${waktu})</small>
+          <div class="muted">Kehadiran: ${statusText(it.hadir)} — Tamu: ${escapeHtml(String(it.tamu))}</div>
+          <div style="margin-top:6px">${escapeHtml(it.pesan || '')}</div>
+          <div style="margin-top:8px; display:flex; gap:8px; flex-wrap:wrap">
+            <button class="btn secondary" data-idx="${idx}" data-action="edit">Edit</button>
+            <button class="btn secondary" data-idx="${idx}" data-action="delete">Hapus</button>
+          </div>`;
+        rsvpListEl.appendChild(div);
+      });
+    }
+
+    function statusText(s){
+      if(s==='yes') return 'Hadir';
+      if(s==='no') return 'Tidak Hadir';
+      if(s==='maybe') return 'Mungkin';
+      return s;
+    }
+
+    // helpers: escape to avoid simple HTML injection
+    function escapeHtml(str){
+      if(!str) return "";
+      return String(str)
+        .replaceAll('&','&amp;')
+        .replaceAll('<','&lt;')
+        .replaceAll('>','&gt;')
+        .replaceAll('"','&quot;')
+        .replaceAll("'",'&#039;');
+    }
+
+    rsvpForm.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const nama = document.getElementById('r_nama').value.trim();
+      const hadir = document.getElementById('r_hadir').value;
+      const tamu = Number(document.getElementById('r_tamu').value) || 1;
+      const kontak = document.getElementById('r_kontak').value.trim();
+      const pesan = document.getElementById('r_pesan').value.trim();
+      if(!nama) return alert("Isi nama untuk konfirmasi.");
+      const arr = loadRSVP();
+      // push new on top
+      arr.unshift({
+        nama, hadir, tamu, kontak, pesan, waktu: Date.now()
+      });
+      saveRSVP(arr);
+      rsvpForm.reset();
+      // set default tamu to 1
+      document.getElementById('r_tamu').value = 1;
+      alert("Terima kasih — konfirmasimu tersimpan (lokal).");
+    });
+
+    // Delegasi untuk edit/hapus di daftar RSVP
+    rsvpListEl.addEventListener('click', (e)=>{
+      const btn = e.target.closest('button');
+      if(!btn) return;
+      const idx = Number(btn.dataset.idx);
+      const action = btn.dataset.action;
+      const data = loadRSVP();
+      if(action === 'delete'){
+        if(confirm("Hapus entri RSVP ini?")){
+          data.splice(idx,1);
+          saveRSVP(data);
+        }
+      } else if(action === 'edit'){
+        const it = data[idx];
+        if(!it) return;
+        // isi form dengan data utk edit -> kita implement edit sebagai: hapus entri lama & isi form
+        if(confirm("Form akan diisi ulang untuk diedit. Setelah menyimpan, entri lama akan tetap ada. Jika ingin mengganti, hapus entri lama setelah menyimpan.")){
+          document.getElementById('r_nama').value = it.nama;
+          document.getElementById('r_hadir').value = it.hadir;
+          document.getElementById('r_tamu').value = it.tamu;
+          document.getElementById('r_kontak').value = it.kontak || '';
+          document.getElementById('r_pesan').value = it.pesan || '';
+          window.scrollTo({top:0, behavior:'smooth'});
+        }
+      }
+    });
+
+    // Export CSV
+    document.getElementById('btnExportRSVP').addEventListener('click', ()=>{
+      const data = loadRSVP();
+      if(!data.length) return alert("Belum ada data RSVP untuk diunduh.");
+      const csvHead = ['nama','hadir','tamu','kontak','pesan','waktu'];
+      const rows = data.map(it => [
+        `"${(it.nama||'').replace(/"/g,'""')}"`,
+        it.hadir,
+        it.tamu,
+        `"${(it.kontak||'').replace(/"/g,'""')}"`,
+        `"${(it.pesan||'').replace(/"/g,'""')}"`,
+        `"${new Date(it.waktu).toLocaleString()}"`
+      ].join(','));
+      const csv = [csvHead.join(','), ...rows].join('\n');
+      const blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `RSVP-${pageFor}.csv`;
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+
+    // Clear RSVP
+    document.getElementById('btnClearRSVP').addEventListener('click', ()=>{
+      if(confirm("Hapus semua data RSVP dari localStorage?")) {
+        localStorage.removeItem(RSVP_KEY);
+        renderRSVP();
+      }
+    });
+
+    renderRSVP();
 
     /* ============================
        Reveal on scroll (A11y-friendly)
@@ -506,6 +743,7 @@ END:VCALENDAR`;
        Footer year
        ============================ */
     document.getElementById('year').textContent = new Date().getFullYear();
+
   </script>
 </body>
 </html>
