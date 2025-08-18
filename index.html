@@ -3,509 +3,93 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Heriyanti — Calon Istriku Tercantik</title>
-  <meta name="description" content="Sebuah halaman cinta untuk Heriyanti, calon istriku tercantik." />
-  <meta property="og:title" content="Heriyanti — Calon Istriku Tercantik" />
-  <meta property="og:description" content="Sebuah halaman cinta untuk Heriyanti, calon istriku tercantik." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://picsum.photos/1200/630?blur=3" />
+  <title>Aldo ❤️ Heriyanti — Undangan Pernikahan</title>
+  <meta name="description" content="Undangan pernikahan Aldo & Heriyanti. Hadir ya!">
   <meta name="theme-color" content="#ff6fa3" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
   <style>
     :root{
-      --bg:#0f0f12;
-      --card:#17171c;
-      --text:#f6f7fb;
-      --muted:#b9bdc9;
-      --accent:#ff6fa3;
-      --accent-2:#ffc2d8;
-      --ring: 0 0 0 3px color-mix(in srgb, var(--accent) 35%, transparent);
-      --radius:18px;
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
-      --glass: rgba(255,255,255,.06);
-      --gradient: radial-gradient(1200px 1200px at 10% -10%, #ff6fa320 0%, transparent 50%),
-                  radial-gradient(1200px 1200px at 110% 10%, #9b8cff20 0%, transparent 50%),
-                  linear-gradient(180deg, #0e0e12 0%, #13131a 100%);
+      --bg:#0f0f12;--card:#17171c;--text:#f6f7fb;--muted:#b9bdc9;
+      --accent:#ff6fa3;--radius:18px;--shadow:0 10px 28px rgba(0,0,0,.35);
+      --glass:rgba(255,255,255,.06);
+      --grad: radial-gradient(1000px 800px at 10% -10%, #ff6fa325 0%, transparent 55%),
+              radial-gradient(900px 600px at 110% 10%, #9b8cff25 0%, transparent 55%),
+              linear-gradient(180deg, #0e0e12 0%, #14141b 100%);
     }
-
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; font-family:Poppins, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
-      color:var(--text); background:var(--gradient), var(--bg);
-      overflow-x:hidden;
-    }
-
-    /* Floating hearts background */
-    .hearts{position:fixed; inset:0; pointer-events:none; z-index:-1; opacity:.5}
-    .hearts span{
-      position:absolute; bottom:-60px; width:14px; height:14px; background:var(--accent);
-      transform:rotate(45deg); animation:float 12s linear infinite;
-      filter:drop-shadow(0 4px 12px rgba(255,111,163,.35));
-    }
-    .hearts span::before, .hearts span::after{
-      content:""; position:absolute; width:14px; height:14px; background:var(--accent); border-radius:50%;
-    }
-    .hearts span::before{ left:-7px; }
-    .hearts span::after{ top:-7px; }
-    @keyframes float{
-      0%{transform:translateY(0) rotate(45deg) scale(.6); opacity:0}
-      10%{opacity:.9}
-      100%{transform:translateY(-120vh) rotate(45deg) scale(1.1); opacity:0}
-    }
-
-    header{
-      position:sticky; top:0; z-index:20; backdrop-filter: blur(10px);
-      background:linear-gradient(180deg, rgba(15,15,18,.7), rgba(15,15,18,.3));
-      border-bottom:1px solid rgba(255,255,255,.06);
-    }
-    .nav{
-      max-width:1080px; margin:auto; padding:12px 20px; display:flex; align-items:center; gap:14px;
-    }
-    .brand{font-weight:700; letter-spacing:.5px}
-    .spacer{flex:1}
-    .nav a{
-      color:var(--text); text-decoration:none; padding:8px 12px; border-radius:12px;
-    }
-    .nav a:hover{ background:var(--glass) }
-
-    .container{max-width:1080px; margin:0 auto; padding:0 20px}
-
-    .hero{
-      display:grid; grid-template-columns:1.15fr .85fr; gap:28px; align-items:center;
-      padding:60px 0 30px;
-    }
-    .card{
-      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      border:1px solid rgba(255,255,255,.08); border-radius:var(--radius); box-shadow:var(--shadow);
-    }
-    .hero .intro{ padding:32px; }
-    .eyebrow{
-      display:inline-flex; align-items:center; gap:8px; font-size:.9rem; color:var(--accent-2);
-      background:rgba(255,111,163,.12); border:1px solid rgba(255,111,163,.35);
-      padding:8px 12px; border-radius:999px;
-    }
-    h1{
-      font-family: "Playfair Display", serif; font-size: clamp(36px, 5vw, 64px);
-      line-height:1.1; margin:14px 0 10px;
-    }
-    .subtitle{
-      font-size:1.05rem; color:var(--muted);
-    }
-    .actions{ display:flex; gap:12px; margin-top:18px; flex-wrap:wrap }
-    .btn{
-      border:none; padding:12px 16px; border-radius:12px; font-weight:600; cursor:pointer;
-      color:#0f0f12; background:var(--accent); box-shadow: 0 6px 18px rgba(255,111,163,.35);
-    }
-    .btn.secondary{
-      background:transparent; color:var(--text); border:1px solid rgba(255,255,255,.14)
-    }
-    .btn:focus-visible{ outline: none; box-shadow: var(--ring) }
-
-    .hero .photo{
-      position:relative; overflow:hidden; min-height:340px;
-      background:url('https://i.ibb.co.com/60sPfqx0/heri1.jpg') center/cover no-repeat;
-      border-radius:var(--radius);
-    }
-    .photo::after{
-      content:"Heriyanti"; position:absolute; bottom:12px; right:16px; font-weight:600; letter-spacing:.5px;
-      background:rgba(0,0,0,.45); color:white; padding:6px 10px; border-radius:10px; font-size:.9rem;
-    }
-
-    section{margin:36px 0}
-    .grid{ display:grid; gap:18px }
-    .cols-3{ grid-template-columns: repeat(3, 1fr) }
-    .cols-2{ grid-template-columns: repeat(2, 1fr) }
-    @media (max-width:900px){
-      .hero{ grid-template-columns:1fr; }
-      .cols-3{ grid-template-columns:1fr 1fr }
-    }
-    @media (max-width:640px){ .cols-3, .cols-2{ grid-template-columns:1fr } }
-
-    .panel{ padding:24px; border-radius:var(--radius); border:1px solid rgba(255,255,255,.08); background:var(--card) }
-
-    .title{ font-family:"Playfair Display", serif; font-size:1.8rem; margin:6px 0 18px }
-    .muted{ color:var(--muted) }
-
-    /* Timeline */
-    .timeline{ position:relative; padding-left:24px }
-    .timeline::before{
-      content:""; position:absolute; left:8px; top:0; bottom:0; width:2px; background:linear-gradient(var(--accent), transparent);
-      opacity:.5
-    }
-    .event{ position:relative; padding:14px 0 14px 12px }
-    .event::before{
-      content:""; position:absolute; left:-1px; top:18px; width:10px; height:10px; border-radius:50%;
-      background:var(--accent); box-shadow: 0 0 0 4px rgba(255,111,163,.25)
-    }
-    .event h4{ margin:0 0 6px }
-    .badge{ display:inline-block; font-size:.8rem; color:#111; background:var(--accent-2); padding:4px 10px; border-radius:999px; }
-
-    /* Gallery */
-    .gallery{ display:grid; grid-template-columns:repeat(3, 1fr); gap:10px }
-    .gallery img{ width:100%; height:220px; object-fit:cover; border-radius:16px; transition:transform .3s ease }
-    .gallery img:hover{ transform: translateY(-4px) }
-
-    /* Countdown */
-    .countdown{
-      display:flex; gap:12px; flex-wrap:wrap
-    }
-    .tick{ flex:1 1 120px; text-align:center; padding:16px; border-radius:16px; background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.08) }
-    .tick .num{ font-size:2rem; font-weight:700 }
-    .tick .lbl{ font-size:.85rem; color:var(--muted) }
-
-    /* Guestbook */
-    form{ display:grid; gap:10px }
-    input, textarea{
-      width:100%; padding:12px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.12);
-      background:#131319; color:var(--text);
-    }
-    input:focus, textarea:focus{ outline:none; box-shadow:var(--ring) }
-    .messages{ display:grid; gap:10px; margin-top:12px }
-    .msg{ padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,.08); background:#14141b }
-    .msg small{ color:var(--muted) }
-
-    footer{
-      margin:40px 0 60px; text-align:center; color:var(--muted)
-    }
-
-    /* Reveal on scroll */
-    .reveal{ opacity:0; transform:translateY(12px); transition:opacity .6s ease, transform .6s ease }
-    .reveal.visible{ opacity:1; transform:none }
-  
-/* Responsif tambahan untuk mobile Android */
-@media (max-width:900px){
-  .gallery{ grid-template-columns:repeat(2,1fr); }
-}
-@media (max-width:640px){
-  .gallery{ grid-template-columns:1fr; }
-  .nav{ flex-wrap:wrap; }
-  .nav a{ flex:1 1 100%; text-align:center }
-}
-.hero .photo{ min-height: clamp(220px, 50vw, 340px); }
-img{ max-width:100%; height:auto; }
-
-</style>
+    body{margin:0;font-family:ui-sans-serif,system-ui,Roboto;color:var(--text);
+      background:var(--grad),var(--bg);line-height:1.6}
+    img{max-width:100%;height:auto;display:block}
+    header{position:sticky;top:0;z-index:20;backdrop-filter:blur(10px);
+      background:linear-gradient(180deg,rgba(15,15,18,.75),rgba(15,15,18,.35));
+      border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav{max-width:1080px;margin:auto;padding:12px 16px;display:flex;align-items:center;gap:12px}
+    .brand{font-weight:800}.spacer{flex:1}
+    .nav a{color:var(--text);text-decoration:none;padding:8px 12px;border-radius:12px}
+    .nav a:hover{background:var(--glass)}
+    @media(max-width:640px){.nav{flex-wrap:wrap}.nav a{flex:1 1 100%;text-align:center}}
+    .container{max-width:1080px;margin:0 auto;padding:0 16px}
+    .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:20px;align-items:center;padding:42px 0}
+    @media(max-width:900px){.hero{grid-template-columns:1fr}}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .hero .intro{padding:24px}
+    h1{font-size:clamp(32px,6vw,56px);margin:14px 0 8px}
+    .subtitle{color:var(--muted)}
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .btn{border:none;padding:12px 14px;border-radius:12px;font-weight:700;cursor:pointer;
+      color:#0f0f12;background:var(--accent);box-shadow:0 6px 18px rgba(255,111,163,.35)}
+    .btn.secondary{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.14)}
+    .hero .photo{min-height:clamp(220px,50vw,360px);border-radius:var(--radius);
+      background:url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1400&auto=format&fit=crop') center/cover}
+    section{margin:28px 0}.panel{padding:20px;border-radius:var(--radius);border:1px solid rgba(255,255,255,.08);background:var(--card)}
+    .grid{display:grid;gap:16px}.cols-2{grid-template-columns:repeat(2,1fr)}
+    @media(max-width:640px){.cols-2{grid-template-columns:1fr}}
+    .title{font-size:1.6rem;margin:6px 0 12px}.muted{color:var(--muted)}
+    .countdown{display:flex;gap:10px;flex-wrap:wrap}
+    .tick{flex:1 1 120px;text-align:center;padding:14px;border-radius:16px;background:rgba(255,255,255,.06)}
+    .tick .num{font-size:2rem;font-weight:800}
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .gallery img{width:100%;height:220px;object-fit:cover;border-radius:16px}
+    @media(max-width:900px){.gallery{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:640px){.gallery{grid-template-columns:1fr}}
+    form{display:grid;gap:10px}input,textarea{padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:#131319;color:var(--text)}
+    .messages{display:grid;gap:10px;margin-top:12px}.msg{padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,.08);background:#14141b}
+    .msg small{color:var(--muted)}footer{text-align:center;margin:36px 0;color:var(--muted)}
+  </style>
 </head>
 <body>
-  <!-- ===== floating hearts ===== -->
-  <div class="hearts" aria-hidden="true"></div>
-
-  <header>
-    <nav class="nav">
-      <div class="brand">❤️ Heriyanti</div>
-      <div class="spacer"></div>
-      <a href="#tentang" aria-label="Tentang">Tentang</a>
-      <a href="#kisah" aria-label="Kisah">Kisah</a>
-      <a href="#galeri" aria-label="Galeri">Galeri</a>
-      <a href="#hitung-mundur" aria-label="Hitung Mundur">Countdown</a>
-      <a href="#buku-tamu" aria-label="Buku Tamu">Buku Tamu</a>
-    </nav>
-  </header>
-
-  <main class="container">
-    <!-- ===== hero ===== -->
-    <section class="hero">
-      <div class="intro card reveal">
-        <span class="eyebrow">Untuk <strong>Heriyanti</strong> — calon istriku tercantik</span>
-        <h1>Aku cinta kamu, hari ini, besok, dan selamanya.</h1>
-        <p class="subtitle" id="typewriter" aria-live="polite">#CalonIstriTercantik</p>
-
-        <div class="actions">
-          <button class="btn" id="btnPlay">Putar Musik</button>
-          <button class="btn secondary" id="btnShare">Bagikan Halaman</button>
-          <a class="btn secondary" href="#galeri">Lihat Galeri</a>
-        </div>
-        <audio id="bgm" loop src="heri.mp3"></audio>
-      </div>
-
-      <div class="photo reveal" role="img" aria-label="Foto indah untuk Heriyanti">
-        <!-- Ganti URL background di CSS .hero .photo untuk foto kalian -->
-      </div>
-    </section>
-
-    <!-- ===== tentang ===== -->
-    <section id="tentang" class="grid cols-2">
-      <div class="panel reveal">
-        <h2 class="title">Tentang Heriyanti</h2>
-        <p class="muted">
-          Ini adalah halaman kecil yang kubuat khusus untukmu, <strong>Heriyanti</strong>.
-          Terima kasih sudah hadir dan membuat hariku lebih bermakna. Semoga halaman ini jadi
-          pengingat kecil betapa kamu istimewa.
-        </p>
-        <ul>
-          <li>Kepribadian: Lembut, cerdas, dan lucu 🤍</li>
-          <li>Hobi: Tidur &#128514;</li>
-          <li>Makanan favorit: Coto Makassar &#128513;</li>
-        </ul>
-      </div>
-      <div class="panel reveal">
-        <h2 class="title">Surat Cinta Singkat</h2>
-        <p>
-          Ketika dunia terasa bising, suaramu jadi tenang. Ketika hari terasa berat, senyummu jadi ringan.
-          Aku tak sabar menyebutmu: istriku.
-        </p>
-        <blockquote class="muted">“Cinta bukan mencari yang sempurna, tapi menyempurnakan yang ada.”</blockquote>
-      </div>
-    </section>
-
-    <!-- ===== kisah ===== -->
-    <section id="kisah" class="panel reveal">
-      <h2 class="title">Kisah Kita</h2>
-      <div class="timeline">
-        <div class="event">
-          <h4>Pertama Bertemu <span class="badge"> 01 oktober 2024</span></h4>
-          <div class="muted">Di sinilah semua dimulai…</div>
-        </div>
-        <div class="event">
-          <h4>Janji Pertama <span class="badge">03 oktober 2024</span></h4>
-          <div class="muted">Kita memilih tumbuh bersama.</div>
-        </div>
-        <div class="event">
-          <h4>Menuju Halal <span class="badge">Menikah Di Tahun 2026</span></h4>
-          <div class="muted">Bismillah, semoga dimudahkan. 🤲</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== galeri ===== -->
-    <section id="galeri" class="panel reveal">
-      <h2 class="title">Galeri untuk Heriyanti</h2>
-      <p class="muted">Ganti gambar-gambar berikut dengan foto kalian ya!</p>
-      <div class="gallery">
-        <img src="https://i.ibb.co.com/PvtCr5qH/1.jpg=80&w=900&auto=format&fit=crop" alt="Kenangan 1">
-        <img src="https://i.ibb.co.com/PGfCCYKW/2.jpg=80&w=900&auto=format&fit=crop" alt="Kenangan 2">
-        <img src="https://i.ibb.co.com/WNTB2Qhm/3.jpg=80&w=900&auto=format&fit=crop" alt="Kenangan 3">
-        <img src="https://i.ibb.co.com/xt20dJdW/4.jpg=80&w=900&auto=format&fit=crop" alt="Kenangan 4">
-        <img src="https://i.ibb.co.com/fGHzdqLc/5.jpg=80&w=900&auto=format&fit=crop" alt="Kenangan 5">
-        <img src="https://i.ibb.co.com/zWySNnTb/6.jpg=80&w=900&auto=format&fit=crop" alt="Kenangan 6">
-      </div>
-    </section>
-
-    <!-- ===== countdown ===== -->
-    <section id="hitung-mundur" class="panel reveal">
-      <h2 class="title">Hitung Mundur Menuju Hari Bahagia</h2>
-      <!-- =====<p class="muted">Atur tanggal di dalam kode (variabel <code>weddingDate</code>), misal <em>2026-05-05</em>.</p>===== -->
-      <div class="countdown" role="timer" aria-live="polite">
-        <div class="tick"><div class="num" id="d">—</div><div class="lbl">Hari</div></div>
-        <div class="tick"><div class="num" id="h">—</div><div class="lbl">Jam</div></div>
-        <div class="tick"><div class="num" id="m">—</div><div class="lbl">Menit</div></div>
-        <div class="tick"><div class="num" id="s">—</div><div class="lbl">Detik</div></div>
-      </div>
-    </section>
-
-    <!-- ===== buku tamu ===== -->
-    <section id="buku-tamu" class="grid cols-2">
-      <div class="panel reveal">
-        <h2 class="title">Buku Tamu</h2>
-        <form id="guestForm" autocomplete="off">
-          <input type="text" id="nama" placeholder="Namamu" required>
-          <textarea id="pesan" rows="3" placeholder="Tulis pesan manis untuk Heriyanti…" required></textarea>
-          <button class="btn" type="submit">Kirim</button>
-        </form>
-        <div class="messages" id="messages" aria-live="polite"></div>
-      </div>
-
-      <div class="panel reveal">
-        <h2 class="title">Detail Acara</h2>
-        <ul class="muted">
-          <li>Tanggal: <strong id="tglLabel">[atur di kode]</strong></li>
-          <li>Lokasi: Palopo </li>
-          <li>Dress code: Formal</li>
-        </ul>
-        <a class="btn secondary" id="btnAddCalendar">Tambah ke Kalender</a>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    Dibuat dengan ♥ untuk <strong>Heriyanti</strong>. © <span id="year"></span>
-  </footer>
-
-  <script>
-    /* ============================
-       CUSTOMIZABLE SETTINGS
-       ============================ */
-    // GANTI tanggal ini ke tanggal spesial kalian (format: YYYY-MM-DDTHH:MM)
-    const weddingDate = "2026-05-05T10:00"; // contoh
-    const pageFor = "Heriyanti"; // nama yang muncul di brand/hero
-
-    /* ============================
-       Floating hearts generator
-       ============================ */
-    const hearts = document.querySelector('.hearts');
-    for(let i=0;i<24;i++){
-      const h=document.createElement('span');
-      h.style.left = Math.random()*100 + '%';
-      h.style.animationDelay = (Math.random()*8)+'s';
-      h.style.animationDuration = (10 + Math.random()*10)+'s';
-      h.style.opacity = .4 + Math.random()*.5;
-      hearts.appendChild(h);
-    }
-
-    /* ============================
-       Typewriter subtitle
-       ============================ */
-    const phrases = [
-      "Calon istriku tercantik: " + pageFor + " ✨",
-      "Aku memilihmu, setiap hari. 💍",
-      "Menuju halal, bismillah. 🤲"
-    ];
-    const tw = document.getElementById('typewriter');
-    let pi=0, ci=0, typing=true;
-    function loopType(){
-      const text = phrases[pi];
-      tw.textContent = typing ? text.slice(0, ++ci) : text.slice(0, --ci);
-      if(typing && ci === text.length){ typing=false; setTimeout(loopType, 1200); }
-      else if(!typing && ci===0){ typing=true; pi=(pi+1)%phrases.length; setTimeout(loopType, 300); }
-      else setTimeout(loopType, typing?40:24);
-    }
-    loopType();
-
-    /* ============================
-       Background music controls
-       ============================ */
-    const audio = document.getElementById('bgm');
-    const btnPlay = document.getElementById('btnPlay');
-    btnPlay.addEventListener('click', async () => {
-      try{
-        if(audio.paused){ await audio.play(); btnPlay.textContent = "Hentikan Musik"; }
-        else{ audio.pause(); btnPlay.textContent = "Putar Musik"; }
-      }catch(e){ alert("Tidak bisa memutar audio. Pastikan file 'your-romantic-song.mp3' tersedia."); }
-    });
-
-    /* ============================
-       Countdown & calendar
-       ============================ */
-    const dEl = document.getElementById('d');
-    const hEl = document.getElementById('h');
-    const mEl = document.getElementById('m');
-    const sEl = document.getElementById('s');
-    const tglLabel = document.getElementById('tglLabel');
-
-    function updateCountdown(){
-      const target = new Date(weddingDate);
-      if(isNaN(target)){ dEl.textContent=hEl.textContent=mEl.textContent=sEl.textContent="—"; return; }
-      tglLabel.textContent = target.toLocaleString(undefined, { dateStyle:'full', timeStyle:'short' });
-
-      const now = new Date();
-      const diff = target - now;
-      if(diff<=0){
-        dEl.textContent = "0"; hEl.textContent="0"; mEl.textContent="0"; sEl.textContent="0";
-        return;
-      }
-      const sec = Math.floor(diff/1000);
-      const days = Math.floor(sec/86400);
-      const hours = Math.floor((sec%86400)/3600);
-      const mins = Math.floor((sec%3600)/60);
-      const secs = sec%60;
-      dEl.textContent=days; hEl.textContent=hours; mEl.textContent=mins; sEl.textContent=secs;
-    }
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-
-    // Add to calendar (ICS)
-    document.getElementById('btnAddCalendar').addEventListener('click', () => {
-      const start = new Date(weddingDate);
-      if(isNaN(start)){ alert("Atur 'weddingDate' dulu ya!"); return; }
-      const end = new Date(start.getTime() + 2*60*60*1000); // +2 jam
-      function toICS(dt){
-        return dt.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}Z/,'Z');
-      }
-      const ics =
-`BEGIN:VCALENDAR
-VERSION:2.0
-PRODID:-//Love//Heriyanti Wedding//ID
-BEGIN:VEVENT
-UID:${Date.now()}@cinta.local
-DTSTAMP:${toICS(new Date())}
-DTSTART:${toICS(start)}
-DTEND:${toICS(end)}
-SUMMARY:Pernikahan ${pageFor}
-DESCRIPTION:Hari bahagia kita ✨
-END:VEVENT
-END:VCALENDAR`;
-      const blob = new Blob([ics], {type:'text/calendar'});
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url; a.download = `Pernikahan-${pageFor}.ics`; a.click();
-      URL.revokeObjectURL(url);
-    });
-
-    /* ============================
-       Web Share API
-       ============================ */
-    document.getElementById('btnShare').addEventListener('click', async () => {
-      const shareData = {
-        title: document.title,
-        text: `Sebuah halaman cinta untuk ${pageFor}.`,
-        url: location.href
-      };
-      if(navigator.share){
-        try{ await navigator.share(shareData); }catch(e){}
-      }else{
-        navigator.clipboard.writeText(location.href);
-        alert("Link sudah disalin ke clipboard!");
-      }
-    });
-
-    /* ============================
-       Guestbook (localStorage)
-       ============================ */
-    const form = document.getElementById('guestForm');
-    const messages = document.getElementById('messages');
-    const STORAGE_KEY = "guestbook-heriyanti";
-
-    function renderMessages(){
-      messages.innerHTML = "";
-      const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
-      if(!data.length){
-        const empty = document.createElement('div');
-        empty.className = "muted";
-        empty.textContent = "Belum ada pesan. Jadilah yang pertama!";
-        messages.appendChild(empty);
-        return;
-      }
-      data.forEach(item=>{
-        const div = document.createElement('div');
-        div.className = "msg";
-        div.innerHTML = `<strong>${item.nama}</strong><br><small>${new Date(item.waktu).toLocaleString()}</small><p>${item.pesan}</p>`;
-        messages.appendChild(div);
-      });
-    }
-    renderMessages();
-
-    form.addEventListener('submit', (e)=>{
-      e.preventDefault();
-      const nama = document.getElementById('nama').value.trim();
-      const pesan = document.getElementById('pesan').value.trim();
-      if(!nama || !pesan) return;
-      const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
-      data.unshift({nama, pesan, waktu: Date.now()});
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-      form.reset();
-      renderMessages();
-    });
-
-    /* ============================
-       Reveal on scroll (A11y-friendly)
-       ============================ */
-    const observer = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting){
-          e.target.classList.add('visible');
-          observer.unobserve(e.target);
-        }
-      })
-    }, {threshold:.15});
-    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-
-    /* ============================
-       Footer year
-       ============================ */
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
-</body>
-</html>
+<header><nav class="nav"><div class="brand">💍 Aldo & Heriyanti</div><div class="spacer"></div>
+<a href="#acara">Acara</a><a href="#hitung-mundur">Countdown</a><a href="#galeri">Galeri</a><a href="#buku-tamu">Buku Tamu</a><a href="#rsvp">RSVP</a></nav></header>
+<main class="container">
+<section class="hero"><div class="intro card"><h1>Aldo ❤️ Heriyanti</h1><p class="subtitle">Kami mengundang Anda hadir pada hari bahagia kami.</p>
+<div class="actions"><a class="btn" href="#buku-tamu">Tulis Ucapan</a><a class="btn secondary" href="#galeri">Lihat Galeri</a></div></div><div class="photo"></div></section>
+<section id="acara" class="panel"><h2 class="title">Detail Acara</h2><p class="muted">Tanggal: <strong id="tglLabel"></strong><br>Lokasi: <strong id="lokasiLabel"></strong></p>
+<div class="actions"><a class="btn secondary" id="btnAddCalendar">➕ Tambah ke Kalender</a><a class="btn secondary" href="https://www.google.com/maps?q=-3.0011,120.2011" target="_blank">📍 Buka di Google Maps</a></div></section>
+<section id="hitung-mundur" class="panel"><h2 class="title">Hitung Mundur</h2><div class="countdown"><div class="tick"><div class="num" id="d">—</div><div>Hari</div></div><div class="tick"><div class="num" id="h">—</div><div>Jam</div></div><div class="tick"><div class="num" id="m">—</div><div>Menit</div></div><div class="tick"><div class="num" id="s">—</div><div>Detik</div></div></div></section>
+<section id="galeri" class="panel"><h2 class="title">Galeri</h2><div class="gallery"><img src="https://picsum.photos/id/1015/600/400"><img src="https://picsum.photos/id/1016/600/400"><img src="https://picsum.photos/id/1018/600/400"><img src="https://picsum.photos/id/1021/600/400"><img src="https://picsum.photos/id/1024/600/400"><img src="https://picsum.photos/id/1025/600/400"></div></section>
+<section id="musik" class="panel"><h2 class="title">Musik</h2><div class="actions"><button class="btn" id="btnPlay">▶️ Putar</button><button class="btn secondary" id="btnStop">⏸️ Stop</button></div><audio id="bgm" src="your-romantic-song.mp3" loop></audio></section>
+<section id="buku-tamu" class="grid cols-2"><div class="panel"><h2 class="title">Buku Tamu</h2><form id="guestForm"><input id="nama" placeholder="Namamu" required><textarea id="pesan" rows="3" placeholder="Tulis ucapan…" required></textarea><button class="btn" type="submit">Kirim</button></form></div><div class="panel"><h2 class="title">Ucapan</h2><div id="messages" class="messages"></div></div></section>
+<section id="rsvp" class="panel"><h2 class="title">Konfirmasi Kehadiran</h2><div class="actions"><button class="btn" id="btnHadir">✅ Hadir</button><button class="btn secondary" id="btnTidak">❌ Tidak Hadir</button></div><p class="muted">Total Hadir: <strong id="countHadir">0</strong> • Tidak Hadir: <strong id="countTidak">0</strong></p></section>
+</main><footer>© <span id="year"></span> Aldo & Heriyanti</footer>
+<script type="module">
+const WEDDING_DATE="2026-05-05T10:00";const LOKASI_ACARA="Palopo, Sulawesi Selatan";
+const t=new Date(WEDDING_DATE);
+tglLabel.textContent=t.toLocaleString(undefined,{dateStyle:'full',timeStyle:'short'});
+lokasiLabel.textContent=LOKASI_ACARA;year.textContent=new Date().getFullYear();
+function upd(){const now=new Date();const diff=t-now;if(diff<=0){["d","h","m","s"].forEach(id=>document.getElementById(id).textContent="0");return;}
+let s=Math.floor(diff/1000);d.textContent=Math.floor(s/86400);h.textContent=Math.floor((s%86400)/3600);m.textContent=Math.floor((s%3600)/60);sEl.textContent=s%60;}
+const d=document.getElementById('d'),h=document.getElementById('h'),m=document.getElementById('m'),sEl=document.getElementById('s');upd();setInterval(upd,1000);
+btnPlay.onclick=()=>bgm.play();btnStop.onclick=()=>{bgm.pause();bgm.currentTime=0;};
+btnAddCalendar.onclick=()=>{const end=new Date(t.getTime()+7200000);function f(dt){return dt.toISOString().replace(/[-:]/g,"").replace(/\.\d{3}Z/,"Z");}
+const ics=`BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nDTSTART:${f(t)}\nDTEND:${f(end)}\nSUMMARY:Pernikahan Aldo & Heriyanti\nLOCATION:${LOKASI_ACARA}\nEND:VEVENT\nEND:VCALENDAR`;
+const blob=new Blob([ics],{type:"text/calendar"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="Aldo-Heriyanti.ics";a.click();URL.revokeObjectURL(url);};
+import{initializeApp}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import{getDatabase,ref,push,serverTimestamp,onChildAdded,query,limitToLast,increment,update,onValue}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+import{getAuth,signInAnonymously}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+const firebaseConfig={apiKey:"AIzaSyA-RVcchycijR1oUMzF8JTNo_5lTwne_Bs",authDomain:"heriyanti.firebaseapp.com",databaseURL:"https://heriyanti-default-rtdb.asia-southeast1.firebasedatabase.app/",projectId:"heriyanti",storageBucket:"heriyanti.firebasestorage.app",messagingSenderId:"402016177828",appId:"1:402016177828:web:46fde6bf90ea298ff9e031"};
+const app=initializeApp(firebaseConfig);const db=getDatabase(app);await signInAnonymously(getAuth(app));
+const messagesRef=ref(db,"messages");onChildAdded(query(messagesRef,limitToLast(100)),s=>{const v=s.val();const wrap=document.createElement("div");wrap.className="msg";wrap.innerHTML=`<strong>${v.nama}</strong> <small>${new Date(v.waktu||Date.now()).toLocaleString()}</small><p>${v.pesan}</p>`;messages.prepend(wrap);});
+guestForm.onsubmit=async e=>{e.preventDefault();await push(messagesRef,{nama:nama.value,pesan:pesan.value,waktu:serverTimestamp()});guestForm.reset();};
+const rsvpRef=ref(db,"rsvp");onValue(rsvpRef,s=>{const v=s.val()||{};countHadir.textContent=v.hadir||0;countTidak.textContent=v.tidak||0;});
+btnHadir.onclick=()=>update(rsvpRef,{hadir:increment(1)});btnTidak.onclick=()=>update(rsvpRef,{tidak:increment(1)});
+</script>
+</body></html>
